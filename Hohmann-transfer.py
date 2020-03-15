@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Tue Mar 10 10:05:28 2020
+# Computational Exercise 3 for PHYS*2310 (Mechanics) - Winter 2020
+# orbits.py
+# Artur Karapetov - March 14th 2020
 
-@author: arcturus
 """
 
 # -*- coding: utf-8 -*-
@@ -39,19 +40,25 @@ def streak(t,x,y,tl):
 
 ### Section 3a:  Main body - Define Constants
 #---------------------------------------------------------------------------
-#FOR EARTH                              #FOR MARS
+#FOR EARTH                              #FOR MARS 
 # perihelion distance x = 0.983 AU      # perihelion distance x = 1.381 AU
-# perihelion speed 0.0175 AU/days       # perihelion speed 0.0153 AU/days
+# perihelion speed 0.0175 AU/day        # perihelion speed 0.0153 AU/day
 # aphelion distance xmax = 1.01671 AU   # aphelion distance xmax = 1.66634 AU
-# period 365 days                       # period 687 days
+# period 365 days                       # period 686.97 days
+
+#FOR VENUS                             #FOR MERCURY 
+# perihelion distance x = 0.72 AU      # perihelion distance x = 0.3075 AU
+# perihelion speed 0.0205 AU/day       # perihelion speed 0.04031 AU/day
+# aphelion distance xmax = 0.73 AU     # aphelion distance xmax = 0.466584 AU
+# period 224.65 days                       # period 87.97 days
 
 # Define physical constants
     # work in distance units AU (1 AU = 1.49598e11 m)
     # work in time units of days (1 day = 86400 s)
 
-M_Sun = 1.9891e30
-mE = 5.972e24
-G = (6.67e-11)*(24*3600)**2/((1.49598e11)**3)               #G in  AU^3/d^2 units (SI: 6.67408e-11)
+M_Sun = 1.9891e30#kg
+mE = 5.972e24#kg 
+G = (6.67408e-11)*(24*3600)**2/((1.49598e11)**3)               #G in  AU^3/d^2 units (SI: 6.67408e-11)
 GM = G*M_Sun       #G*M_Sun in AU^3/d^2 units
 
 
@@ -59,17 +66,38 @@ GM = G*M_Sun       #G*M_Sun in AU^3/d^2 units
 dt = 0.1
 T = np.arange(0.0, 1095., dt)
 
+# MERCURY SETUP
+# 2D arrays for position and velocity (x,y components)
+rE = np.zeros((T.size,2)) #array is created like this because dealing with a 2D orbit so need x & y coord.
+vE = np.zeros_like(rE) #shape of rE which is T.size by 2.
+# define initial conditions: (sun is at zero)
+rE[0,:] = [0.3075, 0.0] #Planet starts at its perihelion distance on the x-axis
+vE[0,:] = [0.0,0.04031] #speed is only in the 'y' direction since starting on the x-axis - perihelion speed
+
+# VENUS SETUP
+# 2D arrays for position and velocity (x,y components)
+rE = np.zeros((T.size,2)) #array is created like this because dealing with a 2D orbit so need x & y coord.
+vE = np.zeros_like(rE) #shape of rE which is T.size by 2.
+# define initial conditions: (sun is at zero)
+rE[0,:] = [0.72, 0.0] #Planet starts at its perihelion distance on the x-axis
+vE[0,:] = [0.0,0.0205] #speed is only in the 'y' direction since starting on the x-axis - perihelion speed
 
 # EARTH SETUP
 # 2D arrays for position and velocity (x,y components)
-rE = np.zeros((T.size,2)) #array created like this bc dealing with a 2D orbit so need x & y coord.
+rE = np.zeros((T.size,2)) #array is created like this because dealing with a 2D orbit so need x & y coord.
 vE = np.zeros_like(rE) #shape of rE which is T.size by 2.
-# define initial conditions - can't be 0 because that is where the sun is lol
+# define initial conditions: (sun is at zero)
+rE[0,:] = [0.983, 0.0] #Planet starts at its perihelion distance on the x-axis
+vE[0,:] = [0.0,0.0175] #speed is only in the 'y' direction since starting on the x-axis - perihelion speed
 
-rE[0,:] = [0.983, 0.0]
-vE[0,:] = [0.0,0.0175] 
-#rEC[] = 
-#vEC[] = 
+# MARS SETUP
+# 2D arrays for position and velocity (x,y components)
+rE = np.zeros((T.size,2)) #array is created like this because dealing with a 2D orbit so need x & y coord.
+vE = np.zeros_like(rE) #shape of rE which is T.size by 2.
+# define initial conditions: (sun is at zero)
+rE[0,:] = [1.381, 0.0] #Planet starts at its perihelion distance on the x-axis
+vE[0,:] = [0.0,0.0153] #speed is only in the 'y' direction since starting on the x-axis - perihelion speed
+ 
 
 ### Section 3b:  Main body - Set up Euler's (Euler-Cromer) Method
 #---------------------------------------------------------------------------
