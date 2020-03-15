@@ -68,19 +68,19 @@ T = np.arange(0.0, 1095., dt)
 
 # MERCURY SETUP
 # 2D arrays for position and velocity (x,y components)
-rE = np.zeros((T.size,2)) #array is created like this because dealing with a 2D orbit so need x & y coord.
-vE = np.zeros_like(rE) #shape of rE which is T.size by 2.
+rMe = np.zeros((T.size,2)) #array is created like this because dealing with a 2D orbit so need x & y coord.
+vMe = np.zeros_like(rMe) #shape of rE which is T.size by 2.
 # define initial conditions: (sun is at zero)
-rE[0,:] = [0.3075, 0.0] #Planet starts at its perihelion distance on the x-axis
-vE[0,:] = [0.0,0.04031] #speed is only in the 'y' direction since starting on the x-axis - perihelion speed
+rMe[0,:] = [0.3075, 0.0] #Planet starts at its perihelion distance on the x-axis
+vMe[0,:] = [0.0,0.04031] #speed is only in the 'y' direction since starting on the x-axis - perihelion speed
 
 # VENUS SETUP
 # 2D arrays for position and velocity (x,y components)
-rE = np.zeros((T.size,2)) #array is created like this because dealing with a 2D orbit so need x & y coord.
-vE = np.zeros_like(rE) #shape of rE which is T.size by 2.
+rV = np.zeros((T.size,2)) #array is created like this because dealing with a 2D orbit so need x & y coord.
+vV = np.zeros_like(rV) #shape of rE which is T.size by 2.
 # define initial conditions: (sun is at zero)
-rE[0,:] = [0.72, 0.0] #Planet starts at its perihelion distance on the x-axis
-vE[0,:] = [0.0,0.0205] #speed is only in the 'y' direction since starting on the x-axis - perihelion speed
+rV[0,:] = [0.72, 0.0] #Planet starts at its perihelion distance on the x-axis
+vV[0,:] = [0.0,0.0205] #speed is only in the 'y' direction since starting on the x-axis - perihelion speed
 
 # EARTH SETUP
 # 2D arrays for position and velocity (x,y components)
@@ -92,11 +92,11 @@ vE[0,:] = [0.0,0.0175] #speed is only in the 'y' direction since starting on the
 
 # MARS SETUP
 # 2D arrays for position and velocity (x,y components)
-rE = np.zeros((T.size,2)) #array is created like this because dealing with a 2D orbit so need x & y coord.
-vE = np.zeros_like(rE) #shape of rE which is T.size by 2.
+rMa = np.zeros((T.size,2)) #array is created like this because dealing with a 2D orbit so need x & y coord.
+vMa = np.zeros_like(rMa) #shape of rE which is T.size by 2.
 # define initial conditions: (sun is at zero)
-rE[0,:] = [1.381, 0.0] #Planet starts at its perihelion distance on the x-axis
-vE[0,:] = [0.0,0.0153] #speed is only in the 'y' direction since starting on the x-axis - perihelion speed
+rMa[0,:] = [1.381, 0.0] #Planet starts at its perihelion distance on the x-axis
+vMa[0,:] = [0.0,0.0153] #speed is only in the 'y' direction since starting on the x-axis - perihelion speed
  
 
 ### Section 3b:  Main body - Set up Euler's (Euler-Cromer) Method
